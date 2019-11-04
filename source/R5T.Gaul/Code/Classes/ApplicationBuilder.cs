@@ -2,6 +2,7 @@
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 using R5T.Sardinia;
 
@@ -56,6 +57,10 @@ namespace R5T.Gaul
         {
             var serviceProvider = new ServiceCollection()
                 .AddConfiguration(configuration)
+                .AddLogging(loggingBuilder =>
+                {
+                    loggingBuilder.AddConsole();
+                })
                 .AddStartup<TStartup>()
                 .BuildServiceProvider();
 

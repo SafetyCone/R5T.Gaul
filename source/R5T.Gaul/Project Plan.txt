@@ -1,4 +1,7 @@
 R5T.Gaul - A codenamed library containing application startup and builder functionality based around two-stage startup and configuring a DI-container.
 
+Based on work from:
+https://github.com/MinexAutomation/Minex/tree/master/Source/Rhodochrosite/Libraries/Common.NetStandard.Lib/Common.NetStandard.Lib/Code/Startup
+
 Goals
 

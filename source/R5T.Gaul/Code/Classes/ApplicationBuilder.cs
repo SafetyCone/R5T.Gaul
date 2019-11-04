@@ -16,11 +16,7 @@ namespace R5T.Gaul
             where TStartup: class, IApplicationStartup
         {
             // Build the standard startup.
-            var startupConfiguration = ApplicationBuilder.GetStartupConfiguration();
-
-            var startupServiceProvider = ApplicationBuilder.GetStartupServiceProvider<TStartup>(startupConfiguration);
-
-            var applicationStartup = startupServiceProvider.GetRequiredService<TStartup>();
+            var applicationStartup = ApplicationBuilder.GetApplicationStartup<TStartup>();
 
             // Configuration.
             var applicationConfigurationBuilder = new ConfigurationBuilder();
@@ -42,6 +38,17 @@ namespace R5T.Gaul
             applicationStartup.Configure(applicationServiceProvider);
 
             return applicationServiceProvider;
+        }
+
+        public static TStartup GetApplicationStartup<TStartup>()
+            where TStartup: class, IApplicationStartup
+        {
+            var startupConfiguration = ApplicationBuilder.GetStartupConfiguration();
+
+            var startupServiceProvider = ApplicationBuilder.GetStartupServiceProvider<TStartup>(startupConfiguration);
+
+            var applicationStartup = startupServiceProvider.GetRequiredService<TStartup>();
+            return applicationStartup;
         }
 
         private static IServiceProvider GetStartupServiceProvider<TStartup>(IConfiguration configuration)
